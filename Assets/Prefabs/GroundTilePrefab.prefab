@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6331864130599958020, guid: 5c3cbe8b26a6a4464840155e0dbb9d05,
+  m_Sprite: {fileID: -6514036627963203331, guid: fa39285c92ca349babe1e03b2e4a2f0b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5839784201650712863}
   - component: {fileID: 4436339097632559516}
   m_Layer: 0
-  m_Name: TilePrefab
+  m_Name: GroundTilePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -137,7 +137,7 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
@@ -153,3 +153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4ac3ab1922541af9d341e5d9a4c945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - name: initial
+    sprite: {fileID: -8898215806168403142, guid: c7ca282e5da844e859bd3e6df0008c22,
+      type: 3}
+  - name: tilled
+    sprite: {fileID: 8339419745347512404, guid: c7ca282e5da844e859bd3e6df0008c22,
+      type: 3}
+  - name: tilled_watered
+    sprite: {fileID: 4545006807149863327, guid: fa39285c92ca349babe1e03b2e4a2f0b,
+      type: 3}
