@@ -9,11 +9,8 @@ public struct SpriteStage {
     public Sprite sprite;
 }
 
-public class Tile : MonoBehaviour
+public class Tile : GameObject
 {
-    // Public variable `sprite` to keep track of the nested `Sprite` game object
-    private SpriteRenderer spriteRenderer;
-
     // All the sprites!
     public SpriteStage[] sprites;
 

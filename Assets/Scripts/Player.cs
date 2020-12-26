@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : GameObject {
 
 	// Used for actual movement
 	private Rigidbody2D body;
@@ -24,9 +24,8 @@ public class Player : MonoBehaviour {
 	// Movement speed
 	public float runSpeed = 20.0f;
 
-	// Selected tool
-	// currentTool is a Tool class
-	private Tool currentTool;
+	// Selected item
+	public Item selectedItem;
 
 	void Start ()
 	{
@@ -38,18 +37,11 @@ public class Player : MonoBehaviour {
 		// Manages walking movement + animation
 		Walk();
 
-		// Determine if we've pressed a number on the keyboard to select a tool
-		int pressedNumber = GetPressedNumber();
-
 		// Manage keyboard input
 		if (Input.GetKeyUp(KeyCode.E))  {
             // pressed E to use tool
-            UseTool();
-        } else if (pressedNumber != -1) {
-			// Tool bar change - select tools 1 - 9
-			Debug.Log("Pressed number " + pressedNumber.ToString());
-			// ToolBar.ChangeTool(pressedNumber)
-		}
+            UseItem();
+        } 
 	}
 
 	private void FixedUpdate()
@@ -81,38 +73,14 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	private void UseTool() 
+	private void UseItem() 
 	{
-		Debug.Log("Pressed E");
+		Debug.Log("Using Item");
 
-		Debug.Log((Vector2)transform.position);
-		Debug.Log(new Vector2(last_horizontal, last_vertical));
-
-		// Cast a ray straight down in front of us.
-		Vector2 position = (Vector2)transform.position + new Vector2(last_horizontal, last_vertical);
-		Debug.Log(position);
-		RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
-
-		// If it hits something that is not the player (ourself)...
-		if (hit.collider != null && hit.transform != null && (string)hit.transform.name != "Player")
+		if (selectedItem.type == "tool")
 		{
-			Debug.Log("We hit something");
-			Debug.Log(hit.transform.name);
-			Tile tileScript = hit.collider.gameObject.GetComponent<Tile>();
-			tileScript.Activate();
+			selectedItem.Use(new Vector2(last_horizontal, last_vertical));
 		}
-	}
-
-	// https://forum.unity.com/threads/setting-an-integer-to-a-number-pressed.510688/
-	// Loops over nums 1 - 9 & checks for input from each
-	// If it finds input, returns the number. Otherwise returns -1
-	private int GetPressedNumber() {
-		for (int number = 0; number <= 9; number++) {
-			if (Input.GetKeyDown(number.ToString()))
-				return number;
-		}
-	
-		return -1;
 	}
 
 	// private void SetDirection() 
