@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : GameObject {
+public class Player : BaseObject {
 
 	// Used for actual movement
 	private Rigidbody2D body;
@@ -24,12 +24,19 @@ public class Player : GameObject {
 	// Movement speed
 	public float runSpeed = 20.0f;
 
-	// Selected item
-	public Item selectedItem;
+	// Item Bar
+	public ItemBar itemBar;
+	private Item selectedItem;
+
+	// Health and other stats
+	public int health = 50;
+
 
 	void Start ()
 	{
 		body = GetComponent<Rigidbody2D>(); 
+		animator = GetComponent<Animator>();
+		selectedItem = itemBar.GetItem();
 	}
 
 	void Update ()
@@ -39,8 +46,13 @@ public class Player : GameObject {
 
 		// Manage keyboard input
 		if (Input.GetKeyUp(KeyCode.E))  {
-            // pressed E to use tool
-            UseItem();
+			// Get the currently selected item from the item bar
+			selectedItem = itemBar.GetItem();
+            // pressed E to use item
+			Debug.Log("Time to use the selected item called: " + selectedItem.name);
+
+			// Tell the item about our position & which direction we're facing
+			selectedItem.Use(transform.position, new Vector2(last_horizontal, last_vertical));
         } 
 	}
 
@@ -73,14 +85,12 @@ public class Player : GameObject {
 		}
 	}
 
-	private void UseItem() 
+	// UseItem method controls the 
+    private void UseItem(Vector2 direction) 
 	{
-		Debug.Log("Using Item");
+		Debug.Log("How should we use this " + selectedItem.type + "?");
 
-		if (selectedItem.type == "tool")
-		{
-			selectedItem.Use(new Vector2(last_horizontal, last_vertical));
-		}
+		
 	}
 
 	// private void SetDirection() 

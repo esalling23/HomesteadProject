@@ -9,15 +9,15 @@ public struct SpriteStage {
     public Sprite sprite;
 }
 
-public class Tile : GameObject
+public class Tile : BaseObject
 {
     // All the sprites!
     public SpriteStage[] sprites;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        spriteRenderer = gameObject.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        base.Start();
         spriteRenderer.sprite = sprites[0].sprite;
     }
 

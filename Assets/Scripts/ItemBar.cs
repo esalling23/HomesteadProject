@@ -1,9 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemBar : MonoBehaviour
 {
+    private const int SIZE = 9;
+    // Public array of items
+    public Item[] items = new Item[SIZE];
+    public int selectedSpot = 0;
+
     void Start () 
     {
 
@@ -11,7 +17,6 @@ public class ItemBar : MonoBehaviour
 
     void Update () 
     {
-
         // Determine if we've pressed a number on the keyboard to select a tool
         int pressedNumber = GetPressedNumber();
 
@@ -19,7 +24,19 @@ public class ItemBar : MonoBehaviour
         {
             // Tool bar change - select tools 1 - 9
             Debug.Log("Pressed number " + pressedNumber.ToString());
-            // ToolBar.ChangeTool(pressedNumber)
+            SetItem(pressedNumber);
+            Debug.Log(GetItem());
+        }
+    }
+
+    // https://answers.unity.com/questions/38943/public-fixed-size-array-in-inspector.html
+    // Prevents inspector-resizing of the `items` array
+    void OnValidate()
+    {
+        if (items.Length != SIZE)
+        {
+            Debug.LogWarning("Item array length cannot be changed");
+            Array.Resize(ref items, SIZE);
         }
     }
 
@@ -36,4 +53,21 @@ public class ItemBar : MonoBehaviour
 
         return -1;
     }
+
+    // SetItem method accepts a number
+    // Should change the currently selected item based on index of itembar
+    private void SetItem(int numKey) 
+    {
+        // The selectedSpot should be an index value
+        // Take the key num like 1 and subtract 1 to get the index 0
+        selectedSpot = numKey - 1;
+    }
+
+    // GetItem method returns the item instance
+    public Item GetItem() 
+    {
+        Debug.Log(items);
+        Debug.Log(items[selectedSpot]);
+        return items[selectedSpot];
+    }    
 }
