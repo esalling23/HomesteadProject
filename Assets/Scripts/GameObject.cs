@@ -7,7 +7,7 @@ public class GameObject : MonoBehaviour
 {
 
     public Sprite sprite;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     void Start()
     {
