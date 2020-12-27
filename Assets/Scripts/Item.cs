@@ -17,15 +17,15 @@ public class Item : BaseObject
 
     public void Use (Vector2 playerPosition, Vector2 direction) 
     {
-        Debug.Log((Vector2)playerPosition);
-        Debug.Log(direction);
+        // Debug.Log((Vector2)playerPosition);
+        // Debug.Log(direction);
 
         switch (type)
         {
             case "tool":
                 // Cast a ray straight down in "front" of the player.
                 Vector2 position = (Vector2)playerPosition + direction;
-                Debug.Log(position);
+                // Debug.Log(position);
                 RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
 
                 // If it hits something that is not the player...

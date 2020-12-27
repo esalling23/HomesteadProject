@@ -25,7 +25,7 @@ public class Player : BaseObject {
 	public float runSpeed = 20.0f;
 
 	// Item Bar
-	public ItemBar itemBar;
+	private ItemBar itemBar;
 	private Item selectedItem;
 
 	// Health and other stats
@@ -36,6 +36,7 @@ public class Player : BaseObject {
 	{
 		body = GetComponent<Rigidbody2D>(); 
 		animator = GetComponent<Animator>();
+		itemBar = GameObject.Find("ItemBar").GetComponent<ItemBar>();
 		selectedItem = itemBar.GetItem();
 	}
 
