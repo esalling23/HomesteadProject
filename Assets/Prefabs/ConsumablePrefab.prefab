@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8977337358854901726}
   - component: {fileID: 8977337358854901727}
   m_Layer: 0
-  m_Name: EdiblePrefab
+  m_Name: ConsumablePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,4 @@ MonoBehaviour:
   sprite: {fileID: 8885172029331220583, guid: 4e486ab059e304d9e9b11ffd85a2b8df, type: 3}
   name: Cauliflower
   price: 80
-  type: edible
+  type: consumable

@@ -31,13 +31,11 @@ public class Player : BaseObject {
 	// Health and other stats
 	public int health = 50;
 
-
 	void Start ()
 	{
 		body = GetComponent<Rigidbody2D>(); 
 		animator = GetComponent<Animator>();
 		itemBar = GameObject.Find("ItemBar").GetComponent<ItemBar>();
-		selectedItem = itemBar.GetItem();
 	}
 
 	void Update ()

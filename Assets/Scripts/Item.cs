@@ -34,11 +34,11 @@ public class Item : BaseObject
                     Debug.Log("We hit something");
                     Debug.Log(hit.transform.name);
                     Tile tileScript = hit.collider.gameObject.GetComponent<Tile>();
-                    tileScript.Activate();
+                    tileScript.Activate(name);
                 }
                 break;
 
-            case "edible": 
+            case "consumable": 
                 Debug.Log("Nom nom nom");
                 break;
 
