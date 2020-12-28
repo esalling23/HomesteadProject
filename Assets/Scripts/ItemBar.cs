@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemBar : MonoBehaviour
 {
@@ -15,6 +16,16 @@ public class ItemBar : MonoBehaviour
     void Start () 
     {
         itemSlots = GameObject.FindGameObjectsWithTag("ItemSlot");
+
+        // Loop over all items to display in ItemBar
+        for (var i = 0; i < items.Length; i++)
+        {
+            // If there's an item in this spot, display it's name
+            if (items[i] != null) 
+            {
+                itemSlots[i].transform.Find("Text").GetComponent<Text>().text =  items[i].name;
+            }
+        }
     }
 
     void Update () 
@@ -25,11 +36,8 @@ public class ItemBar : MonoBehaviour
         if (pressedNumber != -1)
         {
             // Item bar change - select tools 1 - 9
-            Debug.Log("Pressed number " + pressedNumber.ToString());
+            // Debug.Log("Pressed number " + pressedNumber.ToString());
             SetItem(pressedNumber);
-
-            // Update item bar
-            UpdateItemSprites();
         }
     }
 
@@ -58,15 +66,6 @@ public class ItemBar : MonoBehaviour
         return -1;
     }
 
-    private void UpdateItemSprites() 
-    {
-        for (var i = 0; i < 9; i++)
-        {
-            Debug.Log(itemSlots[i]);
-        }
-        Debug.Log(itemSlots[0]);
-    }
-
     // SetItem method accepts a number
     // Should change the currently selected item based on index of itembar
     private void SetItem(int numKey) 
@@ -75,15 +74,13 @@ public class ItemBar : MonoBehaviour
         // Take the key num like 1 and subtract 1 to get the index 0
         selectedSpot = numKey - 1;
 
-        Debug.Log(GetItem());
-        // Highlight selected tool
+        // Set selected slot to be active
         itemSlots[selectedSpot].GetComponent<ItemSlot>().SetSlotActive();
     }
 
     // GetItem method returns the item instance
     public Item GetItem() 
     {
-        Debug.Log(items[selectedSpot]);
         return items[selectedSpot];
     }    
 }
