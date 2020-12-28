@@ -46,7 +46,6 @@ public class Item : BaseObject
                 Debug.Log("Used the item " + name);
                 break;
         }
-
         
     }
 }

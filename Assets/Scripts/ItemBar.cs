@@ -10,9 +10,11 @@ public class ItemBar : MonoBehaviour
     public Item[] items = new Item[SIZE];
     public int selectedSpot = 0;
 
+    private GameObject[] itemSlots;
+
     void Start () 
     {
-
+        itemSlots = GameObject.FindGameObjectsWithTag("ItemSlot");
     }
 
     void Update () 
@@ -22,10 +24,12 @@ public class ItemBar : MonoBehaviour
 
         if (pressedNumber != -1)
         {
-            // Tool bar change - select tools 1 - 9
+            // Item bar change - select tools 1 - 9
             Debug.Log("Pressed number " + pressedNumber.ToString());
             SetItem(pressedNumber);
-            Debug.Log(GetItem());
+
+            // Update item bar
+            UpdateItemSprites();
         }
     }
 
@@ -54,6 +58,15 @@ public class ItemBar : MonoBehaviour
         return -1;
     }
 
+    private void UpdateItemSprites() 
+    {
+        for (var i = 0; i < 9; i++)
+        {
+            Debug.Log(itemSlots[i]);
+        }
+        Debug.Log(itemSlots[0]);
+    }
+
     // SetItem method accepts a number
     // Should change the currently selected item based on index of itembar
     private void SetItem(int numKey) 
@@ -61,12 +74,15 @@ public class ItemBar : MonoBehaviour
         // The selectedSpot should be an index value
         // Take the key num like 1 and subtract 1 to get the index 0
         selectedSpot = numKey - 1;
+
+        Debug.Log(GetItem());
+        // Highlight selected tool
+        itemSlots[selectedSpot].GetComponent<ItemSlot>().SetSlotActive();
     }
 
     // GetItem method returns the item instance
     public Item GetItem() 
     {
-        Debug.Log(items);
         Debug.Log(items[selectedSpot]);
         return items[selectedSpot];
     }    
