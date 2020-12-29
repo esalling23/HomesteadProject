@@ -5,47 +5,45 @@ using UnityEngine;
 
 public class Item : BaseObject
 {
-    public string name;
+    public string label;
     public int price;
+    
+    // How much health/stamina is provided by this item
+    public int health;
+    public int stamina;
 
     public string type;
 
-    void Start () 
+    private Player player;
+
+    protected override void Start () 
     {
-        
+        base.Start();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
-    public void Use (Vector2 playerPosition, Vector2 direction) 
+    public void Use (Tile tile) 
     {
-        // Debug.Log((Vector2)playerPosition);
-        // Debug.Log(direction);
-
         switch (type)
         {
             case "tool":
-                // Cast a ray straight down in "front" of the player.
-                Vector2 position = (Vector2)playerPosition + direction;
-                // Debug.Log(position);
-                RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
-
-                // If it hits something that is not the player...
-                if (hit.collider != null && hit.transform != null && (string)hit.transform.name != "Player")
-                {
-                    Debug.Log("We hit something");
-                    Debug.Log(hit.transform.name);
-                    Tile tileScript = hit.collider.gameObject.GetComponent<Tile>();
-                    tileScript.Activate(name);
-                }
+                tile.Activate(label);
                 break;
 
             case "consumable": 
                 Debug.Log("Nom nom nom");
+                player.Consume(health, stamina);
+                break;
+
+            case "placeable":
+                Debug.Log("PUT THAT DOWN");
+                // Literally...put it down
+                Instantiate(gameObject, tile.transform);
                 break;
 
             default: 
-                Debug.Log("Used the item " + name);
+                Debug.Log("Used the item " + label);
                 break;
         }
-        
     }
 }

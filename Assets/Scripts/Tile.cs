@@ -1,38 +1,24 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-public struct SpriteState {
-    public string name;
-    public Sprite sprite;
-}
-
 public class Tile : BaseObject
 {
-    // All the sprites!
-    public SpriteState[] sprites;
+    private GameObject place;
 
-    // Private dictionary representation of sprites
-    protected Dictionary<string, Sprite> spriteStateDict = new Dictionary<string, Sprite>();
-
-    // Public state of the tile
-    // Should map to the `name` of a SpriteStage
-    public string state;
+    private InteractableStates stateManager;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        state = sprites[0].name;
-        spriteRenderer.sprite = sprites[0].sprite;
-        
-        // Converts Struct Array into Dictionary
-        for (var i = 0; i < sprites.Length; i++) 
-        {
-            spriteStateDict.Add(sprites[i].name, sprites[i].sprite);
-        }
+
+        stateManager = GetComponent<InteractableStates>();
+        spriteRenderer.sprite = stateManager.spriteStates[0].sprite;
+
+        place = GameObject.Find("Place");
     }
 
     // Update is called once per frame
@@ -44,14 +30,28 @@ public class Tile : BaseObject
 
     protected void StateChangeEvent () 
     {
-        spriteRenderer.sprite = spriteStateDict[state];
+        spriteRenderer.sprite = stateManager.spriteStateDict[stateManager.state];
     }
 
     public virtual void Activate (string item) 
     {
         // Activating any tile should depend on the item being used
         // and the state of the tile
-        Debug.Log("ACTIVATING....Current State: " + state);
-    }
+        Debug.Log("ACTIVATING....Current State: " + stateManager.state);
 
+        // Based on current state + item being used, modify tile state
+        List<Dictionary<string, string>> toolOptions = stateManager.stateChangesDict[stateManager.state];
+        Debug.Log(toolOptions);
+
+        for (var i = 0; i < toolOptions.Count; i++) {
+            Debug.Log(toolOptions[i]);
+            if (toolOptions[i].ContainsKey(item)) {
+                stateManager.state = toolOptions[i][item];
+            }
+        }
+
+        // After changing state, trigger state change event
+        // TODO: actually use events not methods....
+        StateChangeEvent();
+    }
 }

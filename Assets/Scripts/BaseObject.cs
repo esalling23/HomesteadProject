@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BaseObject : MonoBehaviour
 {
-
     public Sprite sprite;
     // protected so it is inherited but not exposed
     protected SpriteRenderer spriteRenderer;

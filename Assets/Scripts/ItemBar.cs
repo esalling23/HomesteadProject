@@ -13,8 +13,11 @@ public class ItemBar : MonoBehaviour
 
     private GameObject[] itemSlots;
 
+    private Player player;
+
     void Start () 
     {
+        player = GameObject.Find("Player").GetComponent<Player>();
         itemSlots = GameObject.FindGameObjectsWithTag("ItemSlot");
 
         // Loop over all items to display in ItemBar
@@ -23,20 +26,40 @@ public class ItemBar : MonoBehaviour
             // If there's an item in this spot, display it's name
             if (items[i] != null) 
             {
-                itemSlots[i].transform.Find("Text").GetComponent<Text>().text =  items[i].name;
+                itemSlots[i].transform.Find("Text").GetComponent<Text>().text =  items[i].label;
             }
         }
     }
 
     void Update () 
     {
+        // KEYBOARD INPUT
+        //
         // Determine if we've pressed a number on the keyboard to select a tool
         int pressedNumber = GetPressedNumber();
 
-        if (pressedNumber != -1)
+        // Pressed E to use item
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            // Get the currently selected item from the item bar
+            Item selectedItem = GetItem();
+
+            Debug.Log("Time to use the selected item called: " + selectedItem.label);
+
+            // Tell the item about our position & which direction we're facing
+            Tile activeTile = player.FindTile();
+
+            // If we hit a tile
+            if (activeTile != null)
+            {
+                selectedItem.Use(activeTile);
+            }
+        }
+        // Pressed number to change item
+        else if (pressedNumber != -1)
         {
             // Item bar change - select tools 1 - 9
-            // Debug.Log("Pressed number " + pressedNumber.ToString());
+            Debug.Log("Pressed number " + pressedNumber.ToString());
             SetItem(pressedNumber);
         }
     }
@@ -75,7 +98,7 @@ public class ItemBar : MonoBehaviour
         selectedSpot = numKey - 1;
 
         // Set selected slot to be active
-        itemSlots[selectedSpot].GetComponent<ItemSlot>().SetSlotActive();
+        itemSlots[selectedSpot].GetComponent<Button>().Select();
     }
 
     // GetItem method returns the item instance

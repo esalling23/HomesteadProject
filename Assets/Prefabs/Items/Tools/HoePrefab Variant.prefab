@@ -10,7 +10,12 @@ PrefabInstance:
     - target: {fileID: 5862258749780207956, guid: 0518ae0ca04564342aaab2ecfd7d5a08,
         type: 3}
       propertyPath: m_Name
-      value: HoePrefab
+      value: HoePrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862258749780207957, guid: 0518ae0ca04564342aaab2ecfd7d5a08,
+        type: 3}
+      propertyPath: label
+      value: hoe
       objectReference: {fileID: 0}
     - target: {fileID: 5862258749780207958, guid: 0518ae0ca04564342aaab2ecfd7d5a08,
         type: 3}

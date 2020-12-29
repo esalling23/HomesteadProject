@@ -30,6 +30,9 @@ public class Player : BaseObject {
 
 	// Health and other stats
 	public int health = 50;
+	public int stamina = 50;
+
+	private Tile activeTile;
 
 	void Start ()
 	{
@@ -42,17 +45,6 @@ public class Player : BaseObject {
 	{
 		// Manages walking movement + animation
 		Walk();
-
-		// Manage keyboard input
-		if (Input.GetKeyUp(KeyCode.E))  {
-			// Get the currently selected item from the item bar
-			selectedItem = itemBar.GetItem();
-            // pressed E to use item
-			Debug.Log("Time to use the selected item called: " + selectedItem.name);
-
-			// Tell the item about our position & which direction we're facing
-			selectedItem.Use(transform.position, new Vector2(last_horizontal, last_vertical));
-        } 
 	}
 
 	private void FixedUpdate()
@@ -84,12 +76,31 @@ public class Player : BaseObject {
 		}
 	}
 
-	// UseItem method controls the 
-    private void UseItem(Vector2 direction) 
+	public Tile FindTile ()  
 	{
-		Debug.Log("How should we use this " + selectedItem.type + "?");
+        // Cast a ray straight down in "front" of the player.
+		// Combines the current "direction" using the  last_horizontal & last_vertical values
+		// with the player's current position
+        Vector2 position = new Vector2(last_horizontal, last_vertical) + (Vector2)transform.position;
+        // Debug.Log(position);
+        RaycastHit2D hit = Physics2D.Raycast(position, Vector2.down);
+		Debug.DrawRay(position, Vector2.down, Color.green);
 
-		
+        // If it hits something that is not the player...
+        if (hit.collider != null && hit.transform != null && (string)hit.transform.name != "Player")
+        {
+            Debug.Log("We hit something");
+            Debug.Log(hit.transform.name);
+            return hit.collider.gameObject.GetComponent<Tile>();
+        }
+
+		return null;
+	}
+
+	public void Consume(int h, int s) 
+	{
+		health += h;
+		stamina += s;
 	}
 
 	// private void SetDirection() 
