@@ -38,7 +38,7 @@ public class Player : BaseObject {
 	{
 		body = GetComponent<Rigidbody2D>(); 
 		animator = GetComponent<Animator>();
-		itemBar = GameObject.Find("ItemBar").GetComponent<ItemBar>();
+		itemBar = GameObject.Find("UI").GetComponent<ItemBar>();
 	}
 
 	void Update ()

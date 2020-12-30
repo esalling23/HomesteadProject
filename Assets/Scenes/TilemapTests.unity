@@ -1114,7 +1114,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2416,6 +2416,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0ad76c8d3f8f4d7db6b44ac520db2a2, type: 3}
+--- !u!1001 &1270876442
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1201319351639503616, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_Name
+      value: AxePrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201319351639503618, guid: c723f166a149b469788d4a6f7dd17bb4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c723f166a149b469788d4a6f7dd17bb4, type: 3}
 --- !u!4 &1312230328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6461241004192550250, guid: d0ad76c8d3f8f4d7db6b44ac520db2a2,
@@ -3540,6 +3609,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d268bbc7e1754d8aa444e867ffc1de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDay: 0
+  currentTime: 0
 --- !u!4 &1767812508
 Transform:
   m_ObjectHideFlags: 0
@@ -3926,6 +3997,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 165514379188690261, guid: bdd9ed104ab9e48a8a4dd66b12472690,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 165514379188690261, guid: bdd9ed104ab9e48a8a4dd66b12472690,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 165514379188690262, guid: bdd9ed104ab9e48a8a4dd66b12472690,
         type: 3}
