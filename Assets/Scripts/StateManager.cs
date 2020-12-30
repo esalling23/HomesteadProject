@@ -6,7 +6,7 @@ using UnityEngine;
 
 [Serializable]
 public struct StateSprite {
-    public string name;
+    public string state;
     public Sprite sprite;
 }
 
@@ -22,7 +22,7 @@ public struct ToolStateChange {
     public ToolNewState[] mappings;
 }
 
-public class InteractableStates : MonoBehaviour
+public class StateManager : MonoBehaviour
 {
     // Public state of the tile
     // Should map to the `name` of a SpriteStage
@@ -41,11 +41,12 @@ public class InteractableStates : MonoBehaviour
     public Dictionary<string, List<Dictionary<string, string>>> stateChangesDict = new Dictionary<string, List<Dictionary<string, string>>>();
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ConstructDicts();
         
-        state = spriteStates[0].name;
+        state = spriteStates[0].state;
+        Debug.Log(state);
     }
 
     private void ConstructDicts () 
@@ -53,7 +54,7 @@ public class InteractableStates : MonoBehaviour
         // Converts SpriteState Struct Array into Dictionary
         for (var i = 0; i < spriteStates.Length; i++) 
         {
-            spriteStateDict.Add(spriteStates[i].name, spriteStates[i].sprite);
+            spriteStateDict.Add(spriteStates[i].state, spriteStates[i].sprite);
         }
 
         // Converts ToolStateChange Struct Array into Dictionary 
@@ -71,6 +72,5 @@ public class InteractableStates : MonoBehaviour
                 });
             }
         }
-        stateChangesDict.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
     }
 }

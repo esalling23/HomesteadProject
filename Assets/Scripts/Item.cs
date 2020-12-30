@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Item : BaseObject
 {
-    public string label;
     public int price;
     
     // How much health/stamina is provided by this item
@@ -37,8 +36,12 @@ public class Item : BaseObject
 
             case "placeable":
                 Debug.Log("PUT THAT DOWN");
-                // Literally...put it down
-                Instantiate(gameObject, tile.transform);
+
+                if (tile.CanPlace(this)) 
+                {
+                    // Literally...put it down
+                    Instantiate(gameObject, tile.transform);
+                }
                 break;
 
             default: 

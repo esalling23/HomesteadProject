@@ -12,6 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5c2b1af3feb407b91a7c15ec7aa012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: 
+  sprite: {fileID: 0}
+  growthTimes: []
+--- !u!114 &8293716596893599567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676991962413930107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752fb24787c5d45e0a4111ac3a35fa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 
+  spriteStates:
+  - state: initial
+    sprite: {fileID: 1056363394224519522, guid: 4e486ab059e304d9e9b11ffd85a2b8df,
+      type: 3}
+  - state: seedling_1
+    sprite: {fileID: -8585454141101764301, guid: 4e486ab059e304d9e9b11ffd85a2b8df,
+      type: 3}
+  - state: seedling_2
+    sprite: {fileID: -7988635054869638377, guid: 4e486ab059e304d9e9b11ffd85a2b8df,
+      type: 3}
+  - state: seedling_3
+    sprite: {fileID: -5086500096865618241, guid: 4e486ab059e304d9e9b11ffd85a2b8df,
+      type: 3}
+  - state: ripe
+    sprite: {fileID: 4460318824969765271, guid: 4e486ab059e304d9e9b11ffd85a2b8df,
+      type: 3}
+  stateChanges: []
 --- !u!1001 &8301066194199503971
 PrefabInstance:
   m_ObjectHideFlags: 0

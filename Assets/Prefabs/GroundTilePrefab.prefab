@@ -155,14 +155,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752fb24787c5d45e0a4111ac3a35fa90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 
   spriteStates:
-  - name: initial
+  - state: initial
     sprite: {fileID: 1045795548900833409, guid: fa39285c92ca349babe1e03b2e4a2f0b,
       type: 3}
-  - name: tilled
+  - state: tilled
     sprite: {fileID: 7339499524708535453, guid: fa39285c92ca349babe1e03b2e4a2f0b,
       type: 3}
-  - name: watered
+  - state: watered
     sprite: {fileID: -4521443897200509039, guid: fa39285c92ca349babe1e03b2e4a2f0b,
       type: 3}
   stateChanges:
@@ -186,8 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4ac3ab1922541af9d341e5d9a4c945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  label: 
   sprite: {fileID: 0}
-  state: 
 --- !u!1 &8139752999479614740
 GameObject:
   m_ObjectHideFlags: 0

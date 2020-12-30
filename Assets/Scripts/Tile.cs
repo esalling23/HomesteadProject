@@ -8,14 +8,14 @@ public class Tile : BaseObject
 {
     private GameObject place;
 
-    private InteractableStates stateManager;
+    private StateManager stateManager;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
 
-        stateManager = GetComponent<InteractableStates>();
+        stateManager = GetComponent<StateManager>();
         spriteRenderer.sprite = stateManager.spriteStates[0].sprite;
 
         place = GameObject.Find("Place");
@@ -53,5 +53,36 @@ public class Tile : BaseObject
         // After changing state, trigger state change event
         // TODO: actually use events not methods....
         StateChangeEvent();
+    }
+
+    public bool CanPlace(Item item) 
+    {
+        switch (label) 
+        {
+            case "ground":
+                // Workable ground
+                // Can only place seeds if the tile has a certain stage
+                if ((stateManager.state == "watered" ^ stateManager.state == "tilled") && item.label == "seeds") 
+                {
+                    return true;
+                } else if (item.label == "seeds")  {
+                    return false;
+                }
+
+                return true;
+                break;
+        
+            case "impassable":
+                // This tile is impassable, we can't place anything here
+                return false;
+                break;
+
+            default:
+                // 
+                return true;
+                break;
+
+            
+        }
     }
 }
