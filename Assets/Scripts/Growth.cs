@@ -23,7 +23,6 @@ public class Growth : BaseObject
     {
         base.Start();
         stateManager = GetComponent<StateManager>();
-        Debug.Log(stateManager.state);
         // Start growth process
         StartCoroutine(RunStage((float)10.0));
     }
@@ -37,8 +36,7 @@ public class Growth : BaseObject
     IEnumerator RunStage(float time)
     {
         while (stateManager.state != "ripe") {
-            Debug.Log("Time to wait...");
-            Debug.Log("State: " + stateManager.state);
+            Debug.Log("Time to wait...Current State: " + stateManager.state);
             yield return new WaitForSeconds(time);
             growthLevel++;
             stateManager.state = stateManager.spriteStates[growthLevel].state;

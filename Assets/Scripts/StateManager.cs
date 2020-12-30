@@ -46,7 +46,6 @@ public class StateManager : MonoBehaviour
         ConstructDicts();
         
         state = spriteStates[0].state;
-        Debug.Log(state);
     }
 
     private void ConstructDicts () 
