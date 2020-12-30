@@ -51,8 +51,6 @@ public class Player : BaseObject {
 	{  
 		// This is what moves us up/down/right/left
 		body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
-		// Debug.Log ("Horizontal: " + horizontal.ToString ());
-		// Debug.Log ("Vertical: " + vertical.ToString ());
 	}
 
 	private void Walk() {
